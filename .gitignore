@@ -1,0 +1,15 @@
+# Ne jamais publier de clés privées ni de certificats réels
+*.key
+*.csr
+*.srl
+*.pem
+*.p12
+*.pfx
+
+# Python
+__pycache__/
+*.pyc
+
+# Windows / éditeurs
+Thumbs.db
+.vscode/

@@ -1,0 +1,27 @@
+From: alice@mic.lab
+To: bob@mic.lab
+Subject: Cle du serveur web
+Date: Tue, 21 Oct 2025 10:00:00 -0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============3527155659288055444=="
+
+--===============3527155659288055444==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Bob,
+
+Je t'envoie la cle du serveur en piece jointe.
+
+Alice
+
+--===============3527155659288055444==
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="serveur.key"
+MIME-Version: 1.0
+
+LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZB
+QVNDLi4uCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
+
+--===============3527155659288055444==--

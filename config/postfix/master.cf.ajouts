@@ -1,0 +1,26 @@
+# Blocs ajoutés à la fin de /etc/postfix/master.cf (AlmaLinux 9, Postfix 3.5)
+# Les lignes "-o", "flags=" et "argv=" DOIVENT commencer par des espaces.
+
+# --- Port 587 : envoi par les utilisateurs (TLS + authentification obligatoires) ---
+submission inet n       -       n       -       -       smtpd
+  -o syslog_name=postfix/submission
+  -o smtpd_tls_security_level=encrypt
+  -o smtpd_sasl_auth_enable=yes
+  -o smtpd_tls_auth_only=yes
+  -o smtpd_client_restrictions=permit_sasl_authenticated,reject
+  -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
+  -o content_filter=dlp:dummy
+
+# --- Service DLP : Postfix donne chaque mail du port 587 au filtre Python ---
+# user=dlpfilter : compte système sans shell ni mot de passe (moindre privilège)
+# 10             : au maximum 10 analyses en parallèle
+dlp       unix  -       n       n       -       10      pipe
+  flags=Rq user=dlpfilter null_sender=
+  argv=/usr/local/bin/dlp_filter.py -f ${sender} -- ${recipient}
+
+# Remarque : dans le labo, la ligne "-o content_filter=dlp:dummy" a été ajoutée avec
+#   sudo postconf -P "submission/inet/content_filter=dlp:dummy"
+# Vérifications :
+#   sudo postfix check
+#   sudo postconf -P | grep content_filter
+#   sudo postconf -M dlp/unix
